@@ -1,1 +1,2 @@
-Add multiple files and the ability to switch between them
+Add multiple files and the ability to switch between them.
+Add the ability to link playstation, xbox, nintendo, and steam accounts to select a random game.
