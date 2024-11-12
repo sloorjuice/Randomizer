@@ -6,7 +6,7 @@ class Main:
         # Creating the window.
         # Setting the Title and Size.
         self.window = tk.Tk()
-        self.windowTitle = self.window.title("Brainrot-inator")
+        self.windowTitle = self.window.title("Randomizer")
         self.window.geometry("600x400")
         
         # Setting Variables for the listed items and Text Field Variable.
@@ -33,7 +33,7 @@ class Main:
         else: random_item = "No items available"
         
         # Create the label for the random item.
-        self.random_label = tk.Label(self.window, text=f"Random Brainrot: {random_item}")
+        self.random_label = tk.Label(self.window, text=f"Random item: {random_item}")
         self.random_label.grid(column=2, row=1)
         
         tk.mainloop()
