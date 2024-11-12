@@ -11,18 +11,18 @@ class Main:
 
         self.item_list = self.load_items()
         
-        self.quitButton = tk.Button(self.window, text='Quit', width=19, command=(quit)).grid(row=0, column=0)
+        self.quitButton = tk.Button(self.window, text='Quit', width=19, command=(quit)).grid(row=0, column=4)
         
         Text_entry = tk.Entry(self.window,textvariable = self.textVar, font=('calibre',10,'normal'))
-        Text_entry.grid(row=1,column=0)
+        Text_entry.grid(row=0,column=0)
         
-        self.addButton = tk.Button(self.window, text='Add', width=19, command=self.addItem).grid(row=2, column=0)
-        self.removeButton = tk.Button(self.window, text='Remove', width=19, command=self.removeItem).grid(row=3, column=0)
-        self.listButton = tk.Button(self.window, text='List', width=19, command=self.listItems).grid(row=4, column=0)
-        self.randButton = tk.Button(self.window, text='Randomize', width=19, command=self.randomButton).grid(row=5, column=0)
+        self.addButton = tk.Button(self.window, text='Add', width=19, command=self.addItem).grid(row=0, column=1)
+        self.removeButton = tk.Button(self.window, text='Remove', width=19, command=self.removeItem).grid(row=0, column=2)
+        self.listButton = tk.Button(self.window, text='List', width=19, command=self.listItems).grid(row=1, column=0)
+        self.randButton = tk.Button(self.window, text='Randomize', width=19, command=self.randomButton).grid(row=1, column=1)
         
         self.Randomlabel = tk.Label(self.window, text=f"Random item: {random.choice(self.item_list)}")
-        self.Randomlabel.grid(column=1, row=4)
+        self.Randomlabel.grid(column=2, row=1)
         
         
         tk.mainloop()
@@ -34,9 +34,12 @@ class Main:
         self.save_item()
     
     def listItems(self): 
+        column_width = 8  # Desired column width
         for index, item in enumerate(self.item_list):
+            column_index = index // column_width
+            row_index = index % column_width + 4  # Starting row is 5
             label = tk.Label(self.window, text=f"{item}")
-            label.grid(column=index % 5, row=4 + index // 5)
+            label.grid(column=column_index, row=row_index)
     
     def removeItem(self):
         """Removes the item in the text field from the list of items"""
@@ -46,7 +49,7 @@ class Main:
     def randomButton(self):
         self.Randomlabel.destroy()
         self.Randomlabel = tk.Label(self.window, text=f"Random item: {random.choice(self.item_list)}")
-        self.Randomlabel.grid(column=1, row=5)
+        self.Randomlabel.grid(column=2, row=1)
 
     def save_item(self):
         with open("items.txt", "w") as file:
