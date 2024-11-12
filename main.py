@@ -6,8 +6,9 @@ class Main:
         self.window = tk.Tk()
         self.windowTitle = self.window.title("Randomizer")
         self.window.geometry("600x400")
-        
+        self.itemLabels = []
         self.textVar=tk.StringVar()
+        self.isListed = False
 
         self.item_list = self.load_items()
         
@@ -34,12 +35,20 @@ class Main:
         self.save_item()
     
     def listItems(self): 
-        column_width = 8  # Desired column width
-        for index, item in enumerate(self.item_list):
-            column_index = index // column_width
-            row_index = index % column_width + 4  # Starting row is 5
-            label = tk.Label(self.window, text=f"{item}")
-            label.grid(column=column_index, row=row_index)
+        if not self.isListed:
+            column_width = 8  # Desired column width
+            for index, item in enumerate(self.item_list):
+                column_index = index // column_width
+                row_index = index % column_width + 4  # Starting row is 5
+                label = tk.Label(self.window, text=f"{item}")
+                label.grid(column=column_index, row=row_index)
+                self.itemLabels.append(label)
+            self.isListed = True
+        else:
+            for item in self.itemLabels:
+                item.destroy()
+            self.isListed = False
+        
     
     def removeItem(self):
         """Removes the item in the text field from the list of items"""
