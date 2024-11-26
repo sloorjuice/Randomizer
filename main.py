@@ -86,7 +86,7 @@ class Main:
         else: random_item = "No items available"
         
         # Create the label for the random item.
-        self.random_label = tk.Label(self.window, text=f"Random Brainrot: {random_item}")
+        self.random_label = tk.Label(self.window, text=f"Random Item: {random_item}")
         self.random_label.grid(column=2, row=1)
 
     def save_item(self):
